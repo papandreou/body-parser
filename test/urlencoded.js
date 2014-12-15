@@ -28,6 +28,23 @@ describe('bodyParser.urlencoded()', function(){
     .expect(200, '{"user":"tobi"}', done)
   })
 
+  it('should parse x-www-form-urlencoded with an explicit iso-8859-1 encoding', function(done){
+    request(server)
+    .post('/')
+    .set('Content-Type', 'application/x-www-form-urlencoded; charset=iso-8859-1')
+    .send('%A2=%BD')
+    .expect(200, '{"¢":"½"}', done)
+  })
+
+  it('should parse x-www-form-urlencoded with unspecified iso-8859-1 encoding when the defaultCharset is set to iso-8859-1', function(done){
+    var server = createServer({ defaultCharset: 'iso-8859-1' })
+    request(server)
+    .post('/')
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .send('%A2=%BD')
+    .expect(200, '{"¢":"½"}', done)
+  })
+
   it('should 400 when invalid content-length', function(done){
     var server = createServer({ limit: '1kb' })
 
