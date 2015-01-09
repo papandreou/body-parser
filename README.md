@@ -91,6 +91,7 @@ The options are:
 - `extended` - parse extended syntax with the [qs](https://www.npmjs.org/package/qs#readme) module. (default: `true`, but using the default has been deprecated. Please research into the difference between `qs` and `querystring` and choose the appropriate setting)
 - `defaultCharset` - the default charset to parse as, if not specified in content-type. Must be either `utf-8` or `iso-8859-1`. The latter is only supported in `extended` mode. (default: `utf-8`)
 - `utf8Sentinel` - whether to let the value of the `utf8` parameter take precedence as the charset selector. It requires the form to contain a parameter named `utf8` with a value of `✓`. Only supported in `extended` mode. (default: `false`)
+- `interpretNumericEntities` - Whether to decode numeric entities such as `&#9786;` when parsing an iso-8859-1 form. Only supported in `extended` mode. (default: `false`)
 - `inflate` - if deflated bodies will be inflated. (default: `true`)
 - `limit` - maximum request body size. (default: `<100kb>`)
 - `parameterLimit` - maximum number of parameters. (default: `1000`)
